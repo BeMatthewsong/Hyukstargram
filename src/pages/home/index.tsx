@@ -50,12 +50,11 @@ const posts: PostProps[] = [
 const Home = () => {
   // TODO: 함수 내용 추가
   const handleFileUpload = () => {};
-  const handleEdit = () => {};
   const handleDelete = () => {};
 
   return (
     <div className="home">
-      <div className="home__title">Home</div>
+      <div className="home__title">🌟 반짝 🌟</div>
       <div className="home__tabs">
         <div className="home__tab home__tab--active">For you</div>
         <div className="home__tab">Following</div>
@@ -67,10 +66,11 @@ const Home = () => {
           name="content"
           id="content"
           placeholder="What is happening"
+          spellCheck="false"
         ></textarea>
         <div className="post-form__submit-area">
           <label className="post-form__file" htmlFor="file-input">
-            <FiImage className="post-form__file-icon" />
+            <FiImage className="post-form__file-icon" size={25} />
           </label>
           <input
             type="file"
