@@ -11,6 +11,7 @@ $grayText: #9ca3af;
 $danger: #dc2626;
 $activeDanger: #dc26268e;
 $gray: #6b7280;
+$grayDark: #4c515b;
 
 $font: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
   "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
@@ -133,6 +134,103 @@ body {
 
     &:hover {
       background-color: $activeBorder;
+    }
+  }
+}
+
+.post {
+  padding-bottom: 40px;
+
+  &__flex {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+  }
+
+  &__email,
+  &__createdAt {
+    font-size: 14px;
+    color: $grayText;
+  }
+
+  &__box {
+    padding: 10px 0px;
+    border-bottom: 1px solid $border;
+
+    a {
+      text-decoration: none;
+    }
+
+    &-profile {
+      text-decoration: none;
+      padding: 0px 10px;
+
+      &-img,
+      &-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
+    }
+
+    &-content {
+      display: block;
+      font-weight: 500;
+      padding: 16px 4px;
+    }
+
+    &-footer {
+      padding: 0 8px;
+      margin-top: 10px;
+      font-size: 14px;
+      display: flex;
+      justify-content: space-between;
+
+      .post__button-box {
+        display: flex;
+        gap: 6px;
+      }
+
+      button {
+        @extend .button;
+
+        &.post__delete {
+          background-color: $danger;
+          font-size: 0.8rem;
+
+          &:hover,
+          &:focus {
+            background-color: $activeDanger;
+          }
+        }
+
+        &.post__edit {
+          background-color: $gray;
+
+          a {
+            background-color: transparent;
+            font-size: 0.8rem;
+            font-weight: 400;
+          }
+
+          &:hover,
+          &:focus {
+            background-color: $grayDark;
+          }
+        }
+
+        &.post__likes,
+        &.post__comments {
+          @extend .post__flex;
+          padding: 0.2rem 0.6rem;
+          gap: 5px;
+          &:hover,
+          &:focus {
+            color: $gray;
+          }
+        }
+      }
     }
   }
 }
