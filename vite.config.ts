@@ -8,6 +8,7 @@ export default defineConfig({
       { find: "@components", replacement: "/src/components" },
       { find: "@pages", replacement: "/src/pages" },
       { find: "@contexts", replacement: "/src/contexts" },
+      { find: "@firebaseApp", replacement: "/src/firebaseApp" },
       { find: "@", replacement: "/src" },
     ],
   },
