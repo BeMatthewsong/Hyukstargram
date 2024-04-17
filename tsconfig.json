@@ -24,9 +24,11 @@
       "@components/*": ["src/components/*"],
       "@pages/*": ["src/components/*"],
       "@contexts/*": ["src/contexts/*"],
+      "@firebasApp/*": ["firebasApp/*"],
       "@/*": ["src/*"]
     }
   },
   "include": ["src"],
+  "types": ["node", "vite/client"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
