@@ -1,5 +1,11 @@
 import { app } from "@/firebaseApp";
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import {
+  GithubAuthProvider,
+  GoogleAuthProvider,
+  createUserWithEmailAndPassword,
+  getAuth,
+  signInWithPopup,
+} from "firebase/auth";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -61,6 +67,33 @@ const SignupForm = () => {
     }
   };
 
+  const onClickSocialLogin = async (e: any) => {
+    const { name } = e.target;
+    let provider;
+    const auth = getAuth(app);
+
+    if (name === "google") {
+      provider = new GoogleAuthProvider();
+    }
+
+    if (name === "github") {
+      provider = new GithubAuthProvider();
+    }
+
+    await signInWithPopup(
+      auth,
+      provider as GoogleAuthProvider | GithubAuthProvider
+    )
+      .then((result) => {
+        console.log(result);
+        toast.success("로그인 되었습니다.");
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error("로그인이 실패되었습니다.");
+      });
+  };
+
   return (
     <form onSubmit={onSubmit}>
       <div className="form form--lg">
@@ -116,6 +149,26 @@ const SignupForm = () => {
       >
         회원가입
       </button>
+      <div className="form__block">
+        <button
+          type="button"
+          name="google"
+          className="form__btn--google"
+          onClick={onClickSocialLogin}
+        >
+          Google로 회원가입
+        </button>
+      </div>
+      <div className="form__block">
+        <button
+          type="button"
+          name="github"
+          className="form__btn--github"
+          onClick={onClickSocialLogin}
+        >
+          Github로 회원가입
+        </button>
+      </div>
     </form>
   );
 };
