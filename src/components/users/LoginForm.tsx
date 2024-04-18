@@ -61,7 +61,6 @@ const LoginForm = () => {
 
     if (name === "google") {
       provider = new GoogleAuthProvider();
-      console.log(provider);
     }
 
     if (name === "github") {
