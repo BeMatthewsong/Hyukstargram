@@ -51,7 +51,7 @@ const LoginForm = () => {
   return (
     <form onSubmit={onSubmit}>
       <div className="form form--lg">
-        <div className="form__title">회원가입</div>
+        <div className="form__title">로그인</div>
         <div className="form__block">
           <label htmlFor="email">이메일</label>
           <input
@@ -81,11 +81,13 @@ const LoginForm = () => {
         </div>
       )}
       <div className="form__block">
-        계정이 있으신가요? <Link to="/login">회원가입 하기</Link>
+        <div className="navigate">
+          계정이 있으신가요? <Link to="/signup">회원가입 하기</Link>
+        </div>
       </div>
       <button
         type="submit"
-        className="form__btn-submit"
+        className="form__btn--submit"
         disabled={error?.length > 0}
       >
         로그인

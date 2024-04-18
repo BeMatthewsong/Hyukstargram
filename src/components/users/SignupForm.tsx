@@ -105,11 +105,13 @@ const SignupForm = () => {
         </div>
       )}
       <div className="form__block">
-        계정이 있으신가요? <Link to="/login">로그인 하기</Link>
+        <div className="navigate">
+          계정이 있으신가요? <Link to="/login">로그인 하기</Link>
+        </div>
       </div>
       <button
         type="submit"
-        className="form__btn-submit"
+        className="form__btn--submit"
         disabled={error?.length > 0}
       >
         회원가입
