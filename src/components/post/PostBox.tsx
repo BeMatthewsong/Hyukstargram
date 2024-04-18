@@ -37,16 +37,16 @@ const PostBox = ({ posts, onDelete }: PostBoxProps) => {
               </div>
             </Link>
             <div className="post__box-footer">
+              <div className="post__button-box">
+                <button type="button" className="post__likes">
+                  <AiFillHeart /> {post?.likeCount || 0}
+                </button>
+                <button type="button" className="post__comments">
+                  <FaCommentAlt /> {post?.comments?.length || 0}
+                </button>
+              </div>
               {user?.uid === post?.uid && (
                 <>
-                  <div className="post__button-box">
-                    <button type="button" className="post__likes">
-                      <AiFillHeart /> {post?.likeCount || 0}
-                    </button>
-                    <button type="button" className="post__comments">
-                      <FaCommentAlt /> {post?.comments?.length || 0}
-                    </button>
-                  </div>
                   <div className="post__button-box">
                     <button type="button" className="post__edit">
                       <Link to={`/posts/edit/${post?.id}`}>수정</Link>
