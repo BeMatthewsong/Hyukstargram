@@ -1,5 +1,5 @@
 import { app } from "@/firebaseApp";
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -15,11 +15,11 @@ const LoginForm = () => {
     e.preventDefault();
     try {
       const auth = getAuth(app);
-      await createUserWithEmailAndPassword(auth, email, password);
+      await signInWithEmailAndPassword(auth, email, password);
       navigate("/");
-      toast.success("성공적으로 로그인이 되었습니다.");
+      toast.success("야홋! 글 쓰러 가볼까요? 😎");
     } catch (error: any) {
-      toast.error(error?.code);
+      toast.error("다시 확인해주세요! 😅");
     }
   };
 

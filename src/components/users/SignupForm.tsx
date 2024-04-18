@@ -18,9 +18,9 @@ const SignupForm = () => {
       const auth = getAuth(app);
       await createUserWithEmailAndPassword(auth, email, password);
       navigate("/");
-      toast.success("성공적으로 회원가입이 되었습니다.");
+      toast.success("성공적으로 회원가입이 되었습니다 🥳");
     } catch (error: any) {
-      toast.error(error?.code);
+      toast.error("회원가입이 안 되었습니다");
     }
   };
 
