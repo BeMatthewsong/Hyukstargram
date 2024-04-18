@@ -200,6 +200,27 @@ body {
 .post {
   padding-bottom: 40px;
 
+  &__no-posts {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+
+    .post__text {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 18px;
+      font-weight: 600;
+      border: 1px solid $gray;
+      padding: 16px;
+      border-radius: 4px;
+      width: 100%;
+      min-height: 200px;
+      // text-align: center;
+    }
+  }
+
   &__flex {
     display: flex;
     gap: 4px;
