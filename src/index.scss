@@ -200,6 +200,18 @@ body {
 .post {
   padding-bottom: 40px;
 
+  &__header {
+    button {
+      border: none;
+      padding: 16px;
+    }
+
+    &-btn {
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+    }
+  }
   &__no-posts {
     display: flex;
     justify-content: center;

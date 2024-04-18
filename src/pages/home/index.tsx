@@ -13,7 +13,6 @@ const Home = () => {
 
   // TODO: 함수 내용 추가
   const handleFileUpload = () => {};
-  const handleDelete = () => {};
 
   useEffect(() => {
     if (user) {
@@ -34,7 +33,7 @@ const Home = () => {
     <main className="home">
       <PostTab />
       <PostForm handleFileUpload={handleFileUpload} />
-      <PostBox posts={posts} onDelete={handleDelete} />
+      <PostBox posts={posts} />
     </main>
   );
 };
