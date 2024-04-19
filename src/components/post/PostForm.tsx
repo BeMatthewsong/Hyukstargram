@@ -32,7 +32,6 @@ const PostForm = ({ handleFileUpload }: PostFormProps) => {
   const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
     const { value } = e.currentTarget;
     if (e.keyCode === 32 && value.trim() !== "") {
-      // 오류: 동작 안 함
       if (hashtags?.includes(value?.trim())) {
         toast.error("동일한 태그가 존재합니다");
       } else {
@@ -42,7 +41,6 @@ const PostForm = ({ handleFileUpload }: PostFormProps) => {
     }
   };
 
-  // 오류: 같은 내용이면 같이 사라지는 오류
   const removeHashtag = (tag: string) => {
     setHashtags(hashtags?.filter((value) => value !== tag));
   };
