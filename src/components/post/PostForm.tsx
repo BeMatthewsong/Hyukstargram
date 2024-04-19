@@ -9,8 +9,11 @@ interface PostFormProps {
   handleFileUpload: () => void;
 }
 
+//TODO: 모듈화 하기
 const PostForm = ({ handleFileUpload }: PostFormProps) => {
   const [content, setContent] = useState("");
+  const [hashtag, setHashtag] = useState<string>("");
+  const [hashtags, setHashtags] = useState<string[]>([]);
 
   const { user } = useContext(AuthContext);
 
@@ -21,6 +24,30 @@ const PostForm = ({ handleFileUpload }: PostFormProps) => {
       setContent(value);
     }
   };
+
+  const onChangeHashtag = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    setHashtag(value);
+  };
+
+  const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const { value } = e.currentTarget;
+    if (e.keyCode === 32 && value.trim() !== "") {
+      // 오류: 동작 안 함
+      if (hashtags?.includes(value?.trim())) {
+        toast.error("동일한 태그가 존재합니다");
+      } else {
+        setHashtags((prev) => [...prev, hashtag]);
+        setHashtag("");
+      }
+    }
+  };
+
+  // 오류: 같은 내용이면 같이 사라지는 오류
+  const removeHashtag = (tag: string) => {
+    setHashtags(hashtags?.filter((value) => value !== tag));
+  };
+
   const onSubmit = async (e: any) => {
     e.preventDefault();
     try {
@@ -33,14 +60,20 @@ const PostForm = ({ handleFileUpload }: PostFormProps) => {
         }),
         uid: user?.uid,
         email: user?.email,
+        hashTags: hashtags,
       });
       setContent("");
+      setHashtag("");
+      setHashtags([]);
       toast.success("게시물을 생성했습니다");
-    } catch (error) {}
+    } catch (error) {
+      toast.error("게시물 작성이 실패했습니다");
+    }
   };
 
   return (
     <form className="post-form" onSubmit={onSubmit}>
+      {/* 본문 입력 */}
       <textarea
         className="post-form__textarea"
         name="content"
@@ -49,7 +82,33 @@ const PostForm = ({ handleFileUpload }: PostFormProps) => {
         spellCheck="false"
         value={content}
         onChange={onChange}
-      ></textarea>
+      />
+      {/* 해시태그 입력 */}
+      <div className="post-form__hashtags">
+        <span className="post-form__hashtags-outputs">
+          {hashtags?.map((item, index) => (
+            <span
+              className="post-form__hashtags-tag"
+              key={item + index}
+              onClick={() => removeHashtag(item)}
+            >
+              #{item}
+            </span>
+          ))}
+        </span>
+        <input
+          type="text"
+          className="post-form__hashtags-input"
+          name="hashtag"
+          id="hashtag"
+          placeholder="해시태그를 스페이스 바로 입력"
+          spellCheck="false"
+          value={hashtag}
+          onChange={onChangeHashtag}
+          onKeyUp={handleKeyUp}
+        />
+      </div>
+      {/* 파일 입력 */}
       <div className="post-form__submit-area">
         <label className="post-form__file" htmlFor="file-input">
           <FiImage className="post-form__file-icon" size={25} />
