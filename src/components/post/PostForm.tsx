@@ -1,7 +1,7 @@
 import { db } from "@/firebaseApp";
 import AuthContext from "@contexts/AuthContext";
 import { addDoc, collection } from "firebase/firestore";
-import { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { FiImage } from "react-icons/fi";
 import { toast } from "react-toastify";
 
@@ -26,8 +26,7 @@ const PostForm = ({ handleFileUpload }: PostFormProps) => {
   };
 
   const onChangeHashtag = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    setHashtag(value);
+    setHashtag(e?.target?.value?.trim());
   };
 
   const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
